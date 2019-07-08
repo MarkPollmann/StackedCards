@@ -3,9 +3,7 @@ import {
   Animated,
   Dimensions,
   StyleSheet,
-  Text,
   View,
-  ScrollView,
   SafeAreaView,
 } from "react-native";
 
@@ -63,55 +61,53 @@ export default class App extends React.Component {
     const { y } = this.state;
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={StyleSheet.absoluteFill}>
-          {cards.map((card, i) => {
-            const translateY = y.interpolate({
-              inputRange: [-cardHeight, 0, cardPadding],
-              outputRange: [
-                cardHeight * i,
-                (cardHeight - cardTitleHeight) * -i,
-                (cardHeight - cardPadding) * -i,
-              ],
-              extrapolateRight: "clamp",
-            });
-            return (
-              <Animated.View
-                key={card.name}
-                style={{ transform: [{ translateY }] }}>
-                <Card {...card} />
-              </Animated.View>
-            );
-          })}
-        </View>
-        <Animated.ScrollView
-          style={{ width: "100%" }}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.content}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: { y },
+      <SafeAreaView style={styles.root}>
+        <View>
+          <View style={StyleSheet.absoluteFill}>
+            {cards.map((card, i) => {
+              const translateY = y.interpolate({
+                inputRange: [-cardHeight, 0, cardPadding],
+                outputRange: [
+                  cardHeight * i,
+                  (cardHeight - cardTitleHeight) * -i,
+                  (cardHeight - cardPadding) * -i,
+                ],
+                extrapolateRight: "clamp",
+              });
+              return (
+                <Animated.View
+                  key={card.name}
+                  style={{ transform: [{ translateY }] }}>
+                  <Card {...card} />
+                </Animated.View>
+              );
+            })}
+          </View>
+          <Animated.ScrollView
+            style={{ width: "100%" }}
+            scrollEventThrottle={16}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.content}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: { y },
+                  },
                 },
-              },
-            ],
-            { useNativeDriver: true },
-          )}
-        />
-        <Text>{JSON.stringify(y, null, 2)}</Text>
+              ],
+              { useNativeDriver: true },
+            )}
+          />
+        </View>
       </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
     margin: 16,
   },
   cardContainer: {
@@ -119,7 +115,5 @@ const styles = StyleSheet.create({
   },
   content: {
     height: height * 2,
-    borderWidth: 5,
-    borderColor: "black",
   },
 });

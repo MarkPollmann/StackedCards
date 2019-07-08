@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export const cardHeight = 250;
 export const cardTitleHeight = 45;
@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   card: {
     width: "100%",
     height: cardHeight,
-    // borderWidth: 5,
     borderRadius: 10,
   },
 });
