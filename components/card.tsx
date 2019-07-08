@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 export const cardHeight = 250;
 export const cardTitleHeight = 45;
+export const cardPadding = 10;
 
 const Card = props => {
   const { color, style } = props;

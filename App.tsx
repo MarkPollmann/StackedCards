@@ -9,7 +9,11 @@ import {
   SafeAreaView,
 } from "react-native";
 
-import Card, { cardHeight, cardTitleHeight } from "./components/card";
+import Card, {
+  cardPadding,
+  cardHeight,
+  cardTitleHeight,
+} from "./components/card";
 
 const height = Dimensions.get("window").height;
 
@@ -63,10 +67,11 @@ export default class App extends React.Component {
         <View style={StyleSheet.absoluteFill}>
           {cards.map((card, i) => {
             const translateY = y.interpolate({
-              inputRange: [-cardHeight, 0],
+              inputRange: [-cardHeight, 0, cardPadding],
               outputRange: [
                 cardHeight * i,
                 (cardHeight - cardTitleHeight) * -i,
+                (cardHeight - cardPadding) * -i,
               ],
               extrapolateRight: "clamp",
             });
@@ -82,6 +87,7 @@ export default class App extends React.Component {
         <Animated.ScrollView
           style={{ width: "100%" }}
           scrollEventThrottle={16}
+          showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.content}
           onScroll={Animated.event(
             [
