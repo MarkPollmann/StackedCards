@@ -108,7 +108,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    margin: 16,
+    backgroundColor: "black",
   },
   cardContainer: {
     width: "100%",
