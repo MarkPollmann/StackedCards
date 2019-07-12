@@ -62,13 +62,13 @@ export default class App extends React.Component {
 
     return (
       <SafeAreaView style={styles.root}>
-        <View>
+        <View style={{ marginTop: 20 }}>
           <View style={StyleSheet.absoluteFill}>
             {cards.map((card, i) => {
               const translateY = y.interpolate({
-                inputRange: [-cardHeight, 0, cardPadding],
+                inputRange: [-cardHeight, 0, cardPadding * 8],
                 outputRange: [
-                  cardHeight * i,
+                  (cardHeight * i) / 4,
                   (cardHeight - cardTitleHeight) * -i,
                   (cardHeight - cardPadding) * -i,
                 ],
