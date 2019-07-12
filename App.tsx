@@ -38,7 +38,7 @@ const cards = [
   },
   {
     name: "Combi",
-    color: "#1c1c1c",
+    color: "#5feaff",
     price: "145 CHF",
   },
   {
